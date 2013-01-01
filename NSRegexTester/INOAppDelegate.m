@@ -13,6 +13,12 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self.regexOptions setFloatingPanel:YES];
+    NSFont * defaultFont = [NSFont fontWithName:@"Inconsolata" size:14.0];
+    [self.testText setFont:defaultFont];
+    [self.matchText setFont:defaultFont];
+    [self.regexField setFont:defaultFont];
+    
+    defaultFont = nil;
 }
 
 - (IBAction)testExpression:(id)sender
@@ -25,13 +31,15 @@
     NSRange testRange = NSMakeRange(0, [[[self.testText textStorage] string] length]);
     
     NSMutableAttributedString * resultString = [[NSMutableAttributedString alloc] initWithString:[[self.testText textStorage] string]];
+    NSFont * defaultFont = [NSFont fontWithName:@"Inconsolata" size:14.0];
+    [resultString addAttribute:NSFontAttributeName value:defaultFont range:NSMakeRange(0, [[[self.testText textStorage] string] length])];
+    defaultFont = nil;
     
     [regex enumerateMatchesInString:[[self.testText textStorage] string] options:0 range:testRange usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){
         NSRange matchRange = [match range];
-
         [resultString addAttribute:NSBackgroundColorAttributeName value:[NSColor yellowColor] range:matchRange];
     }];
-
+    
     [[self.matchText textStorage] setAttributedString:resultString];
     
 }

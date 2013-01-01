@@ -13,6 +13,7 @@
 		93A42BC9169154E800ED596B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93A42BC7169154E800ED596B /* Credits.rtf */; };
 		93A42BCC169154E800ED596B /* INOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A42BCB169154E800ED596B /* INOAppDelegate.m */; };
 		93A42BCF169154E800ED596B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A42BCD169154E800ED596B /* MainMenu.xib */; };
+		93D1BC04169367B200F6EB79 /* Inconsolata.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93D1BC03169367B200F6EB79 /* Inconsolata.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		93A42BCA169154E800ED596B /* INOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INOAppDelegate.h; sourceTree = "<group>"; };
 		93A42BCB169154E800ED596B /* INOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INOAppDelegate.m; sourceTree = "<group>"; };
 		93A42BCE169154E800ED596B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		93D1BC03169367B200F6EB79 /* Inconsolata.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inconsolata.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		93A42BBF169154E800ED596B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				93D1BC03169367B200F6EB79 /* Inconsolata.ttf */,
 				93A42BC0169154E800ED596B /* NSRegexTester-Info.plist */,
 				93A42BC1169154E800ED596B /* InfoPlist.strings */,
 				93A42BC4169154E800ED596B /* main.m */,
@@ -157,6 +160,7 @@
 				93A42BC3169154E800ED596B /* InfoPlist.strings in Resources */,
 				93A42BC9169154E800ED596B /* Credits.rtf in Resources */,
 				93A42BCF169154E800ED596B /* MainMenu.xib in Resources */,
+				93D1BC04169367B200F6EB79 /* Inconsolata.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +302,7 @@
 				93A42BD4169154E800ED596B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
