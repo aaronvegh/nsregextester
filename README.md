@@ -5,6 +5,9 @@ This is a very simple Mac OS X application that allows you to test regular expre
 
 My problem is that, as a Rails developer, I'd grown accustomed to using [Rubular](http://www.rubular.com), a brilliant regex testing tool. However, there are subtle differences in the syntax of regular expressions between the Mac SDK and others. This tool ensures that the expressions I enter will actually work when implemented in code.
 
+##Download
+If you just want a binary, [here you go](http://vegh.ca/nsregextester/NSRegexTester.zip).
+
 ##Screenshot
 
 <img src="http://vegh.ca/nsregextester/screenshot.png" />
