@@ -1,0 +1,521 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://schema.org/">
+<head>
+<title>ICU Regex Reference</title>
+<meta charset="UTF-8" />
+<style>
+@font-face {
+    font-family: 'InconsolataMedium';
+    src: url('Inconsolata-webfont.eot');
+    src: url('Inconsolata-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Inconsolata-webfont.woff') format('woff'),
+         url('Inconsolata-webfont.ttf') format('truetype'),
+         url('Inconsolata-webfont.svg#InconsolataMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+div, p, th, td {font-family: "InconsolataMedium" ;}
+</style>
+</head>
+<body>
+	<h1>ICU Regular Expressions Reference</h1>
+	<p>Digest taken from <a href="http://userguide.icu-project.org/strings/regexp">the ICU site</a>.</p>
+
+<h2><a name="TOC-Regular-Expression-Metacharacters"></a>Regular Expression Metacharacters</h2>
+<table>
+<tbody>
+<tr bgcolor="#99ccff">
+<th bgcolor="#cccccc">Character</th>
+<th bgcolor="#cccccc" style="width:48px;height:30px">outside<br />
+of sets
+</th>
+<th bgcolor="#cccccc" style="width:47px;height:30px">[inside sets]
+</th>
+<th bgcolor="#cccccc">Description</th>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\a</td>
+<td style="width:48px;height:15px">✓</td>
+<td style="width:47px;height:15px">✓</td>
+<td bgcolor="#eeeeee">Match a BELL, \u0007</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\A</td>
+<td style="width:48px;height:15px">✓</td>
+<td style="width:47px;height:15px"><br />
+</td>
+<td bgcolor="#eeeeee">Match at the beginning of the input. Differs from ^ in that \A will not match after a new line within the input.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\b</td>
+<td style="width:48px;height:30px">✓</td>
+<td style="width:47px;height:30px"><br />
+</td>
+<td bgcolor="#eeeeee">Match
+if the current position is a word boundary. Boundaries occur at the
+transitions between word (\w) and non-word (\W) characters, with
+combining marks ignored. For better word boundaries, see <a href="http://userguide.icu-project.org/boundaryanalysis">ICU Boundary Analysis</a>
+. </td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\B</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Match if the current position is not a word boundary.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\cX</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match a control-X character.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\d</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match any character with the Unicode General Category of Nd (Number, Decimal Digit.)</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\D</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match any character that is not a decimal digit.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\e</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match an ESCAPE, \u001B.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\E</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> ✓</td>
+<td bgcolor="#eeeeee">Terminates a \Q ... \E quoted sequence.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\f</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match a FORM FEED, \u000C.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\G</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Match if the current position is at the end of the previous match.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\n</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match a LINE FEED, \u000A.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\N{UNICODE CHARACTER NAME}</td>
+<td style="width:48px;height:30px"> ✓</td>
+<td style="width:47px;height:30px">✓ </td>
+<td bgcolor="#eeeeee">Match the named character.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\p{UNICODE PROPERTY NAME}</td>
+<td style="width:48px;height:30px"> ✓</td>
+<td style="width:47px;height:30px">✓ </td>
+<td bgcolor="#eeeeee">Match any character with the specified Unicode Property.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\P{UNICODE PROPERTY NAME}</td>
+<td style="width:48px;height:30px"> ✓</td>
+<td style="width:47px;height:30px">✓ </td>
+<td bgcolor="#eeeeee">Match any character not having the specified Unicode Property.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\Q</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> ✓</td>
+<td bgcolor="#eeeeee">Quotes all following characters until \E.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\r</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match a CARRIAGE RETURN, \u000D.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\s</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓</td>
+<td bgcolor="#eeeeee">Match a white space character. White space is defined as [\t\n\f\r\p{Z}].</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\S</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match a non-white space character.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\t</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match a HORIZONTAL TABULATION, \u0009.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\uhhhh</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match the character with the hex value hhhh.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\Uhhhhhhhh</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match
+the character with the hex value hhhhhhhh. Exactly eight hex digits
+must be provided, even though the largest Unicode code point is
+\U0010ffff.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\w</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match a word character. Word characters are [\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}].</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\W</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match a non-word character.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\x{hhhh}</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match the character with hex value hhhh. From one to six hex digits may be supplied.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\xhh</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match the character with two digit hex value hh</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\X</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Match a <a href="http://www.unicode.org/unicode/reports/tr29/#Grapheme_Cluster_Boundaries" rel="nofollow">Grapheme Cluster</a>
+. </td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\Z</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Match if the current position is at the end of input, but before the final line terminator, if one exists.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\z</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Match if the current position is at the end of input.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\<i style="font-family:arial,sans-serif">n</i></td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Back
+Reference. Match whatever the nth capturing group matched. n must be a
+number &gt; 1 and &lt; total number of capture groups in the pattern.<br />
+</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td style="width:152px;height:31px">\0ooo</td>
+<td style="width:48px;height:31px"> ✓</td>
+<td style="width:47px;height:31px">✓ </td>
+<td style="width:912px;height:31px">Match an Octal character. <span style="font-family:courier new,monospace"> 'ooo'</span> is from one to three octal digits.  0377 is the largest allowed Octal character.  The leading zero is required; it distinguishes Octal constants from back references.<br />
+</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">[pattern]</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px">✓ </td>
+<td bgcolor="#eeeeee">Match any one character from the set. </td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">.</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Match any character.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">^</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Match at the beginning of a line. </td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">$</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Match at the end of a line. </td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\</td>
+<td style="width:48px;height:15px"> ✓</td>
+<td style="width:47px;height:15px"> </td>
+<td bgcolor="#eeeeee">Quotes the following character. Characters that must be quoted to be treated as literals are * ? + [ ( ) { } ^ $ | \ .<br />
+</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td bgcolor="#eeeeee">\</td>
+<td style="width:48px;height:15px"> </td>
+<td style="width:47px;height:15px"> ✓</td>
+<td bgcolor="#eeeeee">Quotes the following character. Characters that must be quoted to be treated as literals are [ ] \<br />Characters that may need to be quoted, depending on the context are - &amp;<br />
+</td>
+</tr>
+</tbody>
+</table>
+<h2><a name="TOC-Regular-Expression-Operators"></a>Regular Expression Operators</h2>
+<table>
+<tbody>
+<tr bgcolor="#99ccff">
+<th bgcolor="#cccccc">Operator</th>
+<th bgcolor="#cccccc">Description</th>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">|</td>
+<td bgcolor="#eeeeee">Alternation. A|B matches either A or B.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">*</td>
+<td bgcolor="#eeeeee">Match 0 or more times. Match as many times as possible.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">+</td>
+<td bgcolor="#eeeeee">Match 1 or more times. Match as many times as possible.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">?</td>
+<td bgcolor="#eeeeee">Match zero or one times. Prefer one.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">{n}</td>
+<td bgcolor="#eeeeee">Match exactly n times</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">{n,}</td>
+<td bgcolor="#eeeeee">Match at least n times. Match as many times as possible.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">{n,m}</td>
+<td bgcolor="#eeeeee">Match between n and m times. Match as many times as possible, but not more than m.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">*?</td>
+<td bgcolor="#eeeeee">Match 0 or more times. Match as few times as possible.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">+?</td>
+<td bgcolor="#eeeeee">Match 1 or more times. Match as few times as possible.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">??</td>
+<td bgcolor="#eeeeee">Match zero or one times. Prefer zero.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">{n}?</td>
+<td bgcolor="#eeeeee">Match exactly n times</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">{n,}?</td>
+<td bgcolor="#eeeeee">Match at least n times, but no more than required for an overall pattern match</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">{n,m}?</td>
+<td bgcolor="#eeeeee">Match between n and m times. Match as few times as possible, but not less than n.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">*+</td>
+<td bgcolor="#eeeeee">Match
+0 or more times. Match as many times as possible when first
+encountered, do not retry with fewer even if overall match fails
+(Possessive Match)</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">++</td>
+<td bgcolor="#eeeeee">Match 1 or more times. Possessive match.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">?+</td>
+<td bgcolor="#eeeeee">Match zero or one times. Possessive match.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">{n}+</td>
+<td bgcolor="#eeeeee">Match exactly n times</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">{n,}+</td>
+<td bgcolor="#eeeeee">Match at least n times. Possessive Match.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">{n,m}+</td>
+<td bgcolor="#eeeeee">Match between n and m times. Possessive Match.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">( ... )</td>
+<td bgcolor="#eeeeee">Capturing parentheses. Range of input that matched the parenthesized subexpression is available after the match.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">(?: ... )</td>
+<td bgcolor="#eeeeee">Non-capturing
+parentheses. Groups the included pattern, but does not provide
+capturing of matching text. Somewhat more efficient than capturing
+parentheses.</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">(?&gt; ... )</td>
+<td bgcolor="#eeeeee">Atomic-match
+parentheses. First match of the parenthesized subexpression is the only
+one tried; if it does not lead to an overall pattern match, back up the
+search for a match to a position before the "(?&gt;"</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">(?# ... )</td>
+<td bgcolor="#eeeeee">Free-format comment (?# comment ).</td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">(?= ... )</td>
+<td bgcolor="#eeeeee">Look-ahead
+assertion. True if the parenthesized pattern matches at the current
+input position, but does not advance the input position. </td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">(?! ... )</td>
+<td bgcolor="#eeeeee">Negative
+look-ahead assertion. True if the parenthesized pattern does not match
+at the current input position. Does not advance the input position. </td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">(?&lt;= ... )</td>
+<td bgcolor="#eeeeee">Look-behind
+assertion. True if the parenthesized pattern matches text preceding the
+current input position, with the last character of the match being the
+input character just before the current position. Does not alter the
+input position. The length of possible strings matched by the
+look-behind pattern must not be unbounded (no * or + operators.) </td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">(?&lt;! ... )</td>
+<td bgcolor="#eeeeee">Negative
+Look-behind assertion. True if the parenthesized pattern does not match
+text preceding the current input position, with the last character of
+the match being the input character just before the current position.
+Does not alter the input position. The length of possible strings
+matched by the look-behind pattern must not be unbounded (no * or +
+operators.) </td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">(?ismwx-ismwx: ... )</td>
+<td bgcolor="#eeeeee">Flag settings. Evaluate the parenthesized expression with the specified flags enabled or -disabled. </td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">(?ismwx-ismwx)</td>
+<td bgcolor="#eeeeee">Flag
+settings. Change the flag settings. Changes apply to the portion of the
+pattern following the setting. For example, (?i) changes to a case
+insensitive match. </td>
+</tr>
+</tbody>
+</table>
+<h2><a name="TOC-Set-Expressions-Character-Classes-"></a>Set Expressions (Character Classes)</h2>
+<div>
+<table>
+<tbody>
+<tr bgcolor="#cccccc">
+<th>Example</th>
+<th>Description</th>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[abc]</td>
+<td>Match any of the characters a, b or c</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[^abc]</td>
+<td>Negation - match any character except a, b or c</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[A-M]</td>
+<td>Range - match any character from A to M. The characters to include are determined by Unicode code point ordering.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[\u0000-\U0010ffff]</td>
+<td>Range - match all characters.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[\p{Letter}]<br />
+[\p{General_Category=Letter}]<br />
+[\p{L}]</td>
+<td>Characters with Unicocde Category = Letter.  All forms shown are equivalent.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[\P{Letter}]</td>
+<td>Negated property. (Upper case \P) Match everything except Letters.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[\p{numeric_value=9}]</td>
+<td>Match all numbers with a numeric value of 9. Any Unicode Property may be used in set expressions.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[\p{Letter}&amp;&amp;\p{script=cyrillic}]</td>
+<td>Logical AND or intersection.  Match the set of all Cyrillic letters.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[\p{Letter}--\p{script=latin}] </td>
+<td>Subtraction.  Match all non-Latin letters.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[[a-z][A-Z][0-9]]<br />
+[a-zA-Z0-9]] </td>
+<td>Implicit Logical OR or Union of Sets.  The examples match ASCII letters and digits.  The two forms are equivalent.</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td>[:script=Greek:]<br /></td>
+<td> Alternate POSIX-like syntax for properties.  Equivalent to \p{script=Greek}</td>
+</tr>
+<tr bgcolor="#eeeeee">
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<br />
+</div>
+<h2><a name="TOC-Case-Insensitive-Matching"></a>Case Insensitive Matching</h2><div>Case insensitive matching is specified by the UREGEX_CASE_INSENSITIVE flag during pattern compilation, or by the (?i) flag within a pattern itself.  Unicode case insensitive matching is complicated by the fact that changing the case of a string may change its length.  See <a href="http://unicode.org/faq/casemap_charprop.html">http://unicode.org/faq/casemap_charprop.html</a> for more information on Unicode casing operations.</div><div><br /></div><div>Full case-insensitive matching handles situations where the number of characters in equal string may differ.  "fußball" compares equal "FUSSBALL", for example.</div><div><br /></div><div>Simple case insensitive matching operates one character at a time on the strings being compared.    "fußball" does not compare equal to "FUSSBALL"</div><div><br /></div><div>For ICU regular expression matching, </div><div><ul><li>Anything from a regular expression pattern that looks like a literal string (even of one character) will be matched against the text using full case folding.  The pattern string and the matched text may be of different lengths.<br /><br /></li><li>Any sequence that is composed by the matching engine from originally separate parts of the pattern will not match with the composition boundary within a case folding expansion of the text being matched.<br /><br /></li><li>Matching of [set expressions] uses simple matching.  A [set] will match exactly one code point from the text.</li></ul>Examples:</div><div><div><ul><li>pattern "fussball" will match "fußball or "fussball"</li><li>pattern "fu(s)(s)ball" or "fus{2}ball" will match  "fussball" or "FUSSBALL" but not "fußball.</li><li>pattern "ß" will find occurences of "ss" or "ß"</li><li>pattern "s+" will not find "ß"</li></ul></div></div><div>With these rules, a match or capturing sub-match can never begin or end in the interior of an input text character that expanded when case folded.</div><div><br /></div><h2><a name="TOC-Replacement-Text"></a>Replacement Text</h2>
+<p>The
+replacement text for find-and-replace operations may contain references
+to capture-group text from the find. References are of the form $n, where n is the number of the capture group. </p>
+<table>
+<tbody>
+<tr bgcolor="#99ccff">
+<th bgcolor="#cccccc">Character</th>
+<th bgcolor="#cccccc">Descriptions</th>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">$n</td>
+<td bgcolor="#eeeeee">The
+text of capture group n will be substituted for $n. n must be &gt;= 0
+and not greater than the number of capture groups. A $ not followed by
+a digit has no special meaning, and will appear in the substitution
+text as itself, a $. </td>
+</tr>
+<tr bgcolor="#99ccff">
+<td bgcolor="#eeeeee">\</td>
+<td bgcolor="#eeeeee">Treat
+the following character as a literal, suppressing any special meaning.
+Backslash escaping in substitution text is only required for '$' and
+'\', but may be used on any other character without bad effects. </td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

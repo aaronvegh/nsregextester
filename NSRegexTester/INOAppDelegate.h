@@ -7,12 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <WebKit/WebKit.h>
 
 @interface INOAppDelegate : NSObject <NSApplicationDelegate>
 
 - (IBAction)testExpression:(id)sender;
 - (IBAction)showOptions:(id)sender;
 - (IBAction)updateOptions:(id)sender;
+- (IBAction)showReference:(id)sender;
+
 
 @property (assign) IBOutlet NSWindow *window;
 @property (strong) IBOutlet NSTextField *regexField;
@@ -23,5 +26,7 @@
 @property (unsafe_unretained) IBOutlet NSPanel *regexOptions;
 @property (strong) IBOutlet NSMatrix *optionsMatrix;
 @property (assign, readwrite) NSUInteger options;
+@property (strong) IBOutlet NSWindow *referenceWindow;
+@property (strong) IBOutlet WebView *referenceView;
 
 @end

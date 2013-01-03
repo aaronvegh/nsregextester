@@ -17,6 +17,8 @@
     [self.testText setFont:defaultFont];
     [self.matchText setFont:defaultFont];
     [self.regexField setFont:defaultFont];
+    NSURLRequest * localRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"regex_ref" ofType:@"html"]]];
+    [[self.referenceView mainFrame] loadRequest:localRequest];
     
     defaultFont = nil;
 }
@@ -53,10 +55,13 @@
 - (IBAction)updateOptions:(id)sender {
     self.options = 0;
     for (NSButtonCell * cell in [sender selectedCells]) {
-        //NSNumber * tag = [NSNumber numberWithInteger:[cell tag] - 1];
         self.options = self.options | (1 << [cell tag] - 1);
-        
     }
+}
+
+- (IBAction)showReference:(id)sender {
+    if(! [self.referenceWindow isVisible] )
+        [self.referenceWindow makeKeyAndOrderFront:sender];
 }
 
 @end

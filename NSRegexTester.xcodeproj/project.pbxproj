@@ -14,6 +14,14 @@
 		93A42BCC169154E800ED596B /* INOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A42BCB169154E800ED596B /* INOAppDelegate.m */; };
 		93A42BCF169154E800ED596B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A42BCD169154E800ED596B /* MainMenu.xib */; };
 		93D1BC04169367B200F6EB79 /* Inconsolata.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93D1BC03169367B200F6EB79 /* Inconsolata.ttf */; };
+		93D1BC121694F01E00F6EB79 /* Inconsolata-webfont.eot in Resources */ = {isa = PBXBuildFile; fileRef = 93D1BC0B1694F01E00F6EB79 /* Inconsolata-webfont.eot */; };
+		93D1BC131694F01E00F6EB79 /* Inconsolata-webfont.svg in Resources */ = {isa = PBXBuildFile; fileRef = 93D1BC0C1694F01E00F6EB79 /* Inconsolata-webfont.svg */; };
+		93D1BC141694F01E00F6EB79 /* Inconsolata-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93D1BC0D1694F01E00F6EB79 /* Inconsolata-webfont.ttf */; };
+		93D1BC151694F01E00F6EB79 /* Inconsolata-webfont.woff in Resources */ = {isa = PBXBuildFile; fileRef = 93D1BC0E1694F01E00F6EB79 /* Inconsolata-webfont.woff */; };
+		93D1BC161694F01E00F6EB79 /* regex_ref.html in Resources */ = {isa = PBXBuildFile; fileRef = 93D1BC0F1694F01E00F6EB79 /* regex_ref.html */; };
+		93D1BC171694F01E00F6EB79 /* SIL Open Font License 1.1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93D1BC101694F01E00F6EB79 /* SIL Open Font License 1.1.txt */; };
+		93D1BC181694F01E00F6EB79 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 93D1BC111694F01E00F6EB79 /* stylesheet.css */; };
+		93D1BC1F1695273700F6EB79 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D1BC1E1695273700F6EB79 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +39,14 @@
 		93A42BCB169154E800ED596B /* INOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INOAppDelegate.m; sourceTree = "<group>"; };
 		93A42BCE169154E800ED596B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		93D1BC03169367B200F6EB79 /* Inconsolata.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inconsolata.ttf; sourceTree = "<group>"; };
+		93D1BC0B1694F01E00F6EB79 /* Inconsolata-webfont.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inconsolata-webfont.eot"; sourceTree = "<group>"; };
+		93D1BC0C1694F01E00F6EB79 /* Inconsolata-webfont.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Inconsolata-webfont.svg"; sourceTree = "<group>"; };
+		93D1BC0D1694F01E00F6EB79 /* Inconsolata-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inconsolata-webfont.ttf"; sourceTree = "<group>"; };
+		93D1BC0E1694F01E00F6EB79 /* Inconsolata-webfont.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inconsolata-webfont.woff"; sourceTree = "<group>"; };
+		93D1BC0F1694F01E00F6EB79 /* regex_ref.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = regex_ref.html; sourceTree = "<group>"; };
+		93D1BC101694F01E00F6EB79 /* SIL Open Font License 1.1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License 1.1.txt"; sourceTree = "<group>"; };
+		93D1BC111694F01E00F6EB79 /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
+		93D1BC1E1695273700F6EB79 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D1BC1F1695273700F6EB79 /* WebKit.framework in Frameworks */,
 				93A42BB9169154E800ED596B /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +82,7 @@
 		93A42BB7169154E800ED596B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93D1BC1E1695273700F6EB79 /* WebKit.framework */,
 				93A42BB8169154E800ED596B /* Cocoa.framework */,
 				93A42BBA169154E800ED596B /* Other Frameworks */,
 			);
@@ -101,8 +119,23 @@
 				93A42BC4169154E800ED596B /* main.m */,
 				93A42BC6169154E800ED596B /* NSRegexTester-Prefix.pch */,
 				93A42BC7169154E800ED596B /* Credits.rtf */,
+				93D1BC0A1694F01E00F6EB79 /* regex_ref */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		93D1BC0A1694F01E00F6EB79 /* regex_ref */ = {
+			isa = PBXGroup;
+			children = (
+				93D1BC0B1694F01E00F6EB79 /* Inconsolata-webfont.eot */,
+				93D1BC0C1694F01E00F6EB79 /* Inconsolata-webfont.svg */,
+				93D1BC0D1694F01E00F6EB79 /* Inconsolata-webfont.ttf */,
+				93D1BC0E1694F01E00F6EB79 /* Inconsolata-webfont.woff */,
+				93D1BC0F1694F01E00F6EB79 /* regex_ref.html */,
+				93D1BC101694F01E00F6EB79 /* SIL Open Font License 1.1.txt */,
+				93D1BC111694F01E00F6EB79 /* stylesheet.css */,
+			);
+			path = regex_ref;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +194,13 @@
 				93A42BC9169154E800ED596B /* Credits.rtf in Resources */,
 				93A42BCF169154E800ED596B /* MainMenu.xib in Resources */,
 				93D1BC04169367B200F6EB79 /* Inconsolata.ttf in Resources */,
+				93D1BC121694F01E00F6EB79 /* Inconsolata-webfont.eot in Resources */,
+				93D1BC131694F01E00F6EB79 /* Inconsolata-webfont.svg in Resources */,
+				93D1BC141694F01E00F6EB79 /* Inconsolata-webfont.ttf in Resources */,
+				93D1BC151694F01E00F6EB79 /* Inconsolata-webfont.woff in Resources */,
+				93D1BC161694F01E00F6EB79 /* regex_ref.html in Resources */,
+				93D1BC171694F01E00F6EB79 /* SIL Open Font License 1.1.txt in Resources */,
+				93D1BC181694F01E00F6EB79 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
