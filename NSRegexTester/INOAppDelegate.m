@@ -13,7 +13,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self.regexOptions setFloatingPanel:YES];
-    NSFont * defaultFont = [NSFont fontWithName:@"Inconsolata" size:14.0];
+    NSFont * defaultFont = [self defaultFont];
     [self.testText setFont:defaultFont];
     [self.matchText setFont:defaultFont];
     [self.regexField setFont:defaultFont];
@@ -33,7 +33,8 @@
     NSRange testRange = NSMakeRange(0, [[[self.testText textStorage] string] length]);
     
     NSMutableAttributedString * resultString = [[NSMutableAttributedString alloc] initWithString:[[self.testText textStorage] string]];
-    NSFont * defaultFont = [NSFont fontWithName:@"Inconsolata" size:14.0];
+    NSFont * defaultFont = [self defaultFont];
+	
     [resultString addAttribute:NSFontAttributeName value:defaultFont range:NSMakeRange(0, [[[self.testText textStorage] string] length])];
     defaultFont = nil;
     
@@ -62,6 +63,13 @@
 - (IBAction)showReference:(id)sender {
     if(! [self.referenceWindow isVisible] )
         [self.referenceWindow makeKeyAndOrderFront:sender];
+}
+
+- (NSFont *)defaultFont {
+	NSFont *defaultFont = [NSFont fontWithName:@"Inconsolata" size:14.0f];
+	if (!defaultFont) defaultFont = [NSFont fontWithName:@"Menlo" size:14.0f];
+	if (!defaultFont) defaultFont = [NSFont systemFontOfSize:14.0f];
+	return defaultFont;
 }
 
 @end
