@@ -38,11 +38,41 @@
     [resultString addAttribute:NSFontAttributeName value:defaultFont range:NSMakeRange(0, [[[self.testText textStorage] string] length])];
     defaultFont = nil;
     
-    [regex enumerateMatchesInString:[[self.testText textStorage] string] options:0 range:testRange usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){
-        NSRange matchRange = [match range];
-        [resultString addAttribute:NSBackgroundColorAttributeName value:[NSColor yellowColor] range:matchRange];
-    }];
-    
+    // Use the Golden Angle to get distinct colors with the maximum
+    // amount of distance between each other. This is inspired by 
+    // nature where plant leaves get the optimal exposure to light by 
+    // being turned against each other by that very angle.
+    // See <http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibnat.html#leavesperturn>
+    CGFloat goldenAngle = 222.49223595;
+    __block CGFloat angle = 0;
+
+    [regex enumerateMatchesInString:[[self.testText textStorage] string] 
+                            options:0 
+                              range:testRange 
+                         usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop)
+     {
+         // Skip the total range if there are subranges (capture groups).
+         NSUInteger firstMatchIndex = (match.numberOfRanges == 1) ? 0 : 1;
+         
+         for (NSUInteger matchIndex = firstMatchIndex; matchIndex < match.numberOfRanges; ++matchIndex)
+         {
+             NSRange matchRange = [match rangeAtIndex:matchIndex];
+             
+             // Skip non-matching capture groups.
+             if (matchRange.location == NSNotFound) continue;
+             
+             CGFloat clampedAngle = fmod(angle, 360.0);
+             CGFloat hue = clampedAngle / 360.0;
+             NSColor *HSBColor = [NSColor colorWithDeviceHue:hue saturation:0.5 brightness:1.0 alpha:0.5];
+             angle += goldenAngle;
+             
+             [resultString addAttribute:NSBackgroundColorAttributeName 
+                                  value:HSBColor 
+                                  range:matchRange];
+         }
+     }];
+
+
     [[self.matchText textStorage] setAttributedString:resultString];
     
 }
