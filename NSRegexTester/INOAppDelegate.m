@@ -51,10 +51,7 @@
                               range:testRange 
                          usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop)
      {
-         // Skip the total range if there are subranges (capture groups).
-         NSUInteger firstMatchIndex = (match.numberOfRanges == 1) ? 0 : 1;
-         
-         for (NSUInteger matchIndex = firstMatchIndex; matchIndex < match.numberOfRanges; ++matchIndex)
+         for (NSUInteger matchIndex = 0; matchIndex < match.numberOfRanges; ++matchIndex)
          {
              NSRange matchRange = [match rangeAtIndex:matchIndex];
              
