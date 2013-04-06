@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 
-@interface INOAppDelegate : NSObject <NSApplicationDelegate>
+@interface INOAppDelegate : NSObject <NSApplicationDelegate, NSTextDelegate, NSTextFieldDelegate>
 
 - (IBAction)testExpression:(id)sender;
 - (IBAction)showOptions:(id)sender;
