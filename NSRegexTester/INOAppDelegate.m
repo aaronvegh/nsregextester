@@ -17,10 +17,22 @@
     [self.testText setFont:defaultFont];
     [self.matchText setFont:defaultFont];
     [self.regexField setFont:defaultFont];
+    [self.regexField setDelegate:self];
+    [self.regexField becomeFirstResponder];
     NSURLRequest * localRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"regex_ref" ofType:@"html"]]];
     [[self.referenceView mainFrame] loadRequest:localRequest];
     
     defaultFont = nil;
+}
+
+- (void)controlTextDidChange:(NSNotification *)obj
+{
+    [self testExpression:nil];
+}
+
+- (void)textDidChange:(NSNotification *)notification
+{
+    [self testExpression:nil];
 }
 
 - (IBAction)testExpression:(id)sender
